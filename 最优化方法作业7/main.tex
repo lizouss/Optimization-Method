@@ -1,0 +1,265 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{CJKfntef}
+\usepackage{setspace}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{作业题}
+\newenvironment{Solution}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{最优化方法}                         % <-- course name   
+%\newcommand\hwnumber{1}                              % <-- homework number
+\newcommand\Information{李邹/人工智能一班}          % <-- personal information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=2.5cm]{lzu-logo.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+            
+        \Huge
+        \textbf{作业7}
+            
+        \vspace{2cm}
+        \LARGE
+        李邹
+            
+        \vspace{0.1cm}
+        \Large
+        人工智能一班(2020级)                      % <-- author
+        
+            
+        \vfill
+        
+        \course \ 课程作业
+            
+        \vspace{1cm}
+            
+        \includegraphics[width=0.4\textwidth]{lzu-logo.png}
+        \\
+        
+        \Large
+        
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\textbf{拟凸性的一阶条件。}\;证明\,§3.4.3\,中给出的判断拟凸性的一阶条件：可微函数$f:\mathrm {R} ^{n}\longrightarrow \mathrm {R}  $，其定义域$\textbf{dom}\,f$是凸集，则函数$f$是拟凸函数的充要条件是，对任意$x,y\in \textbf{dom}\,f$有
+\[f(y) \leq f(x) \Longrightarrow \nabla f(x)^{T}(y-x) \leq 0\]
+\end{Problem}
+    
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+\textbf{首先证明：}$f$ 是拟凸函数能推出：若 $f(y) \leq f(x) \Rightarrow \nabla f^{T}(x)(y-x) \leq 0$
+
+因为 $f(x)$ 为拟凸函数，所以对于$\forall x, y \in \operatorname{dom} f, 0 \leq \theta \leq 1$，都有
+\[\max \{f(x), f(y)\} \geq f(\theta x+(1-\theta) y)\]
+
+设 $f(y) \leq f(x)$，从而有
+\begin{align}
+    &f(x) \geq f(\theta x+(1-\theta) y) \notag \\
+    \Leftrightarrow &f(\theta x+(1-\theta) y)-f(x) \leq 0 \notag \\
+    \Leftrightarrow &f(\theta x+(1-\theta) y)-f(\theta x+(1-\theta) x) \leq 0 \notag \\
+    \Leftrightarrow &\frac{f(\theta x+(1-\theta) y)-f(\theta x+(1-\theta) x)}{(1-\theta)(y-x)}(1-\theta)(y-x) \leq 0 
+\end{align}
+
+当$\theta \to 0 $时，(1)式则化为
+\[f^{\prime}(x)(y-x) \leq 0\]
+
+\textbf{其次证明：}若 $\forall x, y \in \operatorname{dom} f, f(y) \leq f(x) \Rightarrow \nabla f^{T}(x)(y-x) \leq 0$ 能推出 $f$ 是拟凸函数
+
+不妨设$z=\theta x+(1-\theta) y\,,\,0<\theta<1$，则等价于证明$f(x) \geq f(z)$成立。
+\vspace*{1em}
+
+$f(x)$与$f(z)$的大小关系有以下两种情况：
+\begin{enumerate}[1)]
+    \item \textbf{$f(x)>f(z)$}\\显然符合$f(x) \geq f(z)$.
+    \item \textbf{$f(x) \leq f(z)$}\\又因为有$f(y) \leq f(x)$，从而有
+    \begin{align}
+        &f^{\prime}(z)(x-z) \leq 0, f^{\prime}(z)(y-z) \leq 0 \notag \\
+        \Rightarrow &f^{\prime}(z)(1-\theta)(x-y) \leq 0, f^{\prime}(z) \theta(y-x) \leq 0 \notag \\
+        \Rightarrow &f^{\prime}(z)=0 \notag
+    \end{align}
+
+    可在 $[z, x]$ 的区间上不断利用上述结论，因为 $f$ 为连续函数, 最终必然有 $f(z)=f(x)$.
+\end{enumerate}
+
+因此，$f(x) \leq f(x)$恒成立，故其等价命题也成立。
+\vspace*{1em}
+
+\textbf{综上，原命题得证。}
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+设函数$f:\mathrm {R} ^{n}\longrightarrow \mathrm {R}  $可微，定义域$\textbf{dom}\,f$是凸集，对任意$x\in \textbf{dom}\,f$，$f(x)>0$。证明函数$f$是对数-凹函数的充要条件是，对于任意$x,y\in \textbf{dom}\,f$，下式成立
+\[\frac{f(y)}{f(x)} \leq \exp \left(\frac{\nabla f(x)^{T}(y-x)}{f(x)}\right)\]
+\end{Problem}
+
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+\textbf{先证必要性：}令$g(x)=\ln_{}{f(x)} $，不等式两边同取自然对数，则有：
+\begin{align}
+    &\frac{f(y)}{f(x)} \leq \exp \left(\frac{\nabla f(x)^{T}(y-x)}{f(x)}\right) \notag \\
+    \Longrightarrow &\ln_{}{f(y)} -\ln_{}{f(x)} \le \frac{\nabla f(x)^{T}(y-x)}{f(x)} \notag \\
+    \Longrightarrow &g(y)-g(x)\le \nabla g(x)^{T}(y-x) \notag
+\end{align}
+
+由一阶条件可推知$g$是凹函数，因此$f$是对数-凹函数。
+\vspace*{1em}
+
+\textbf{再证充分性：}因为$f$是对数-凹函数，所以$g$是凹函数，则有：
+\begin{align}
+    &g(y)-g(x)\le \nabla g(x)^{T}(y-x) \notag \\
+    \Longrightarrow& \ln_{}{f(y)} -\ln_{}{f(x)} \le \frac{\nabla f(x)^{T}(y-x)}{f(x)} \notag \\
+    \Longrightarrow& \frac{f(y)}{f(x)} \leq \exp \left(\frac{\nabla f(x)^{T}(y-x)}{f(x)}\right) \notag
+\end{align}
+
+\textbf{综上，原命题得证。}
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+证明如果函数$f:\mathrm {R} ^{n}\longrightarrow \mathrm {R}  $是对数-凹函数且$a\ge 0$，那么函数$g=f-a$是对数-凹函数，其定义域为$\textbf{dom}\,g=\{x \in \textbf{dom}\,f \mid f(x)>a\}$。
+\end{Problem}
+    
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+由题有，$f$是对数-凹函数，则有：
+\begin{align}
+    f(\theta x+(1-\theta) y) \geq f(x)^{\theta} f(y)^{1-\theta}
+\end{align}
+
+将(2)式代入$g=f-a$中，利用霍尔德不等式，则有：
+\begin{align}
+    f(\theta x+(1-\theta) y) -a &\geq f(x)^{\theta} f(y)^{1-\theta}-a  = f(x)^{\theta} f(y)^{1-\theta}- a^{\theta} a^{1-\theta} \notag \\
+    &\geq (f(x)-a)^{\theta} (f(y)-a)^{1-\theta} \notag
+\end{align}
+
+所以函数$g$是对数-凹函数，定义域为$\textbf{dom} g=\{x \in \textbf{dom} f \mid f(x)>a\}$.
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+证明下列函数是对数-凹函数
+\\
+\textbf{调和平均函数}
+\[f(x)=\frac{1}{1 / x_{1}+\cdots+1 / x_{n}}, \quad \textbf{dom} f=\mathbf{R}_{++}^{n}\]
+\end{Problem}
+        
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+对函数$f$求偏导，结果如下：
+\begin{align}
+    \frac{\partial f}{\partial x_{i}} & = \frac{1}{\left(a x_{i}+1\right)^{2}}>0, \quad a = \sum_{n \neq i} \frac{1}{x_{n}} \notag \\
+    \frac{\partial^{2} f}{\partial x_{i}^{2}} & = -\frac{2 a}{\left(a x_{i}+1\right)^{3}}<0, \quad a = \sum_{n \neq i} \frac{1}{x_{n}} \notag \\
+    \frac{\partial^{2} f}{\partial x_{i} \partial x_{j}} & = \frac{2 x_{i} x_{j}}{\left(b x_{i} x_{j}+x_{i}+x_{j}\right)^{3}}>0, \quad b = \sum_{n \neq i, j} \frac{1}{x_{n}} \notag
+\end{align}
+
+显然有$\nabla^{2} f(x) \preceq 0, \nabla f(x) \succeq 0$，从而可以得到
+\begin{align}
+    &f(x) \nabla^{2} f(x) \preceq 0, \quad f(x) \nabla f(x)^{T} \succeq 0 \notag \\
+    \Longrightarrow &f(x) \nabla^{2} f(x) \preceq \nabla f(x) \nabla f(x)^{T} \notag
+\end{align}
+
+所以，函数$f$是对数-凹函数。
+\hfill $\Box$
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

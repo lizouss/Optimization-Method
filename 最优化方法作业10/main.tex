@@ -1,0 +1,329 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{CJKfntef}
+\usepackage{setspace}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{作业题}
+\newenvironment{Solution}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{最优化方法}                         % <-- course name   
+%\newcommand\hwnumber{1}                              % <-- homework number
+\newcommand\Information{李邹/人工智能一班}          % <-- personal information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=2.5cm]{lzu-logo.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+            
+        \Huge
+        \textbf{作业10}
+            
+        \vspace{2cm}
+        \LARGE
+        李邹
+            
+        \vspace{0.1cm}
+        \Large
+        人工智能一班(2020级)                      % <-- author
+        
+            
+        \vfill
+        
+        \course \ 课程作业
+            
+        \vspace{1cm}
+            
+        \includegraphics[width=0.4\textwidth]{lzu-logo.png}
+        \\
+        
+        \Large
+        
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+加热到$T$（高于环境温度）的流体在长度固定、截面半径为$r$的圆形管道种流动。管道外有一层厚度$w \ll r$的绝热涂层以减少透过管壁的热损失。
+这个问题的设计变量为$T,r$和$w$。\\
+热量损失（近似）正比于$Tr/w$，所以在固定的使用期限内，由热量损失带来的能量损失由$\alpha_{1} Tr/w$给出。具有固定管壁厚度的管道的成本近似正比于总材料，由$\alpha_{2} r$给出。涂层的成本也近似正比于总的涂料，
+即$\alpha_{3} rw$（利用$w \ll r$）。总成本是这三种成本之和。\\
+管道中流过的热量完全取决于流体的流量（流体具有固定的速度），由$\alpha_{4}Tr^{2}$给出。如同变量$T,r$和$w$一样，常数$\alpha_{i}$为正。\\
+现在的问题是：在总成本限制$C_{max}$和约束
+$$
+T_{\min } \leq T \leq T_{\max }, \quad r_{\min } \leq r \leq r_{\max }, \quad w_{\min } \leq w \leq w_{\max }, \quad w \leq 0.1 r
+$$
+下，极大化管道运输的总热量。将这个问题表示为一个几何规划（GP）。
+\end{Problem}
+    
+\begin{Solution}
+\textbf{解答}
+\end{Solution}
+%Complete the assignment now
+根据题意，我们可以先写出该优化问题的一般形式。
+
+题意要求极大化管道运输的总热量，因此有
+\[\operatorname{maximize} \; \alpha_{4} T r^{2}\]
+
+除直接给定的约束外，题中还给出了总成本限制$C_{max}$，因此有
+\[\alpha_{1} T w^{-1}+\alpha_{2} r+\alpha_{3} r w \leq C_{\max }\]
+
+从而，可以得到一般形式
+$$
+\begin{array}{ll}
+\operatorname{maximize} & \alpha_{4} T r^{2} \\
+\text {subject to } & \alpha_{1} T w^{-1}+\alpha_{2} r+\alpha_{3} r w \leq C_{\max } \\
+& T_{\min } \leq T \leq T_{\max } \\
+& r_{\min } \leq r \leq r_{\max } \\
+& w_{\min } \leq w \leq w_{\max } \\
+& w \leq 0.1 r
+\end{array}
+$$
+
+将其转换为等价的几何规划（GP）
+$$
+\begin{array}{ll}
+\operatorname{minimize} & \left(1 / \alpha_{4}\right) T^{-1} r^{-2} \\
+\text {subject to } & \left(\alpha_{1} / C_{\max }\right) T w^{-1}+\left(\alpha_{2} / C_{\max }\right) r+\left(\alpha_{3} / C_{\max }\right) r w \leq 1 \\
+& \left(1 / T_{\max }\right) T \leq 1, \quad T_{\min } T^{-1} \leq 1 \\
+& \left(1 / r_{\max }\right) r \leq 1, \quad r_{\min } r^{-1} \leq 1 \\
+& \left(1 / w_{\max }\right) w \leq 1, \quad w_{\min } w^{-1} \leq 1 \\
+& 10 w r^{-1} \leq 1 .
+\end{array}
+$$
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+\textbf{最佳梁设计问题的递归形式。}\enspace 证明GP(4.46)等价于GP
+$$
+\begin{array}{ll}
+\operatorname{minimize} & \sum_{i=1}^{N} w_{i} h_{i} \\
+\text {subject to } & w_{i} / w_{\max } \leq 1, \quad w_{\min } / w_{i} \leq 1, \quad i=1, \ldots, N \\
+& h_{i} / h_{\max } \leq 1, \quad h_{\min } / h_{i} \leq 1, \quad i=1, \ldots, N \\
+& h_{i} /\left(w_{i} S_{\max }\right) \leq 1 \quad i=1, \ldots, N \\
+& 6 i F /\left(\sigma_{\max } w_{i} h_{i}^{2}\right) \leq 1, \quad i=1, \ldots, N \\
+& (2 i-1) d_{i} / v_{i}+v_{i+1} / v_{i} \leq 1, \quad i=1, \ldots, N \\
+& (i-1 / 3) d_{i} / y_{i}+v_{i+1} / y_{i}+y_{i+1} / y_{i} \leq 1, \quad i=1, \ldots, N \\
+& y_{1} / y_{\max } \leq 1 \\
+& E w_{i} h_{i}^{3} d_{i} /(6 F)=1, \quad i=1, \ldots, N .
+\end{array}
+$$
+其变量为$w_{i}, h_{i}, v_{i}, d_{i}, y_{i}$ for $i=1, \ldots, N$。
+\end{Problem}
+
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+GP(4.46)中给出了如下的优化问题
+$$
+\begin{array}{ll}
+\operatorname{minimize} & \sum_{i=1}^{N} w_{i} h_{i} \\
+\text { subject to } & w_{\min } \leq w_{i} \leq w_{\max }, i=1, \ldots, N \\
+& h_{\min } \leq h_{i} \leq h_{\max }, i=1, \ldots, N \\
+& S_{\min } \leq h_{i} / w_{i} \leq S_{\max }, i=1, \ldots, N \\
+& 6 i F / w_{i} h_{i}^{2} \leq \sigma_{\max }, i=1, \ldots, N \\
+& 12(2 i-1) F / E w_{i} h_{i}^{3}+v_{i+1}=v_{i}, i=1, \ldots, N \\
+& 6(i-1 / 3) F / E w_{i} h_{i}^{3}+v_{i+1}+y_{i+1}=y_{i}, i=1, \ldots, N \\
+& y_{1} \leq y_{\max }
+\end{array}
+$$
+
+对于其中的两个等式
+\[v_{i}=12(i-1 / 2) \frac{F}{E w_{i} h_{i}^{3}}+v_{i+1}, \quad y_{i}=6(i-1 / 3) \frac{F}{E w_{i} h_{i}^{3}}+v_{i+1}+y_{i+1}\]
+
+结合该问题的实际物理意义，即让悬臂梁保持平衡状态，因此可以得到
+\[v_{i} \geq 12(i-1 / 2) \frac{F}{E w_{i} h_{i}^{3}}+v_{i+1}, \quad y_{i} \geq 6(i-1 / 3) \frac{F}{E w_{i} h_{i}^{3}}+v_{i+1}+y_{i+1}\]
+
+再将GP(4.46)中的其他约束化为几何规划的形式，并令
+\[d_{i}=6 F /\left(E w_{i} h_{i}^{3}\right), \quad i=1, \ldots, N\]
+
+显然和题目中的优化问题是等价的。
+
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+将下面的问题表示为凸优化问题。
+\begin{enumerate}[(a)]
+    \item 极小化$\max \{p(x), q(x)\} $，其中$p$和$q$为正项式。
+    \item 极小化$\exp (p(x))+\exp (q(x))$，其中$p$和$q$为正项式。
+    \item 在$r(x)>q(x)$的约束下极小化$p(x) /(r(x)-q(x))$，其中$p$和$q$为正项式，$r$为单项式。
+\end{enumerate}
+\end{Problem}
+    
+\begin{Solution}
+\textbf{解答}
+\end{Solution}
+%Complete the assignment now
+\textbf{以下三问的核心思路，都是通过对数函数，将包含正项式的目标函数与约束函数进行转化，以得到凸形式的几何规划。}
+\begin{enumerate}[(a)]
+    \item 因为$p(x),q(x)$是正项式，因此有
+    $$
+\begin{aligned}
+&p(x)=\sum_{k=1}^{N} c_{k} x_{1}^{a_{1 k}} x_{2}^{a_{2 k}} \cdots x_{n}^{a_{n k}} \\
+&q(x)=\sum_{k=1}^{M} f_{k} x_{1}^{d_{1 k}} x_{2}^{d_{2 k}} \cdots x_{n}^{d_{n k}}
+\end{aligned}
+$$
+
+令$y_{i}=\log x_{i}$，则有
+$$
+\begin{aligned}
+&p(x)=\sum_{k=1}^{N} e^{a_{k}^{T} y+b_{k}} \\
+&q(x)=\sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}}
+\end{aligned}
+$$
+
+那么可以得到相应的几何规划
+$$
+\begin{aligned}
+    \min & \;t\\
+    \text { s.t. } &\sum_{k=1}^{N} e^{a_{k}^{T} y+b_{k}} t^{-1} \leq 1\\
+    &\sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}} t^{-1} \leq 1
+\end{aligned}
+$$
+
+使用对数函数进行转换，代回原变元，可以到到最终形式
+$$
+\begin{array}{ll}
+\operatorname{minimize} & t \\
+\text {subject to } & p(x) / t \leq 1, \quad q(x) / t \leq 1
+\end{array}
+$$
+    \item 和(a)中的步骤类似，我们可以转换为如下的几何规划
+    $$
+    \begin{aligned}
+    \min & \;\exp \left(t_{1}\right)+\exp \left(t_{2}\right)\\
+    \text { s.t. } & \sum_{k=1}^{N} e^{a_{k}^{T} y+b_{k}} t_{1}^{-1} \leq 1 \\
+    & \sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}} t_{2}^{-1} \leq 1
+    \end{aligned}
+    $$
+
+    使用对数函数进行转换，可以得到
+    $$
+    \begin{array}{ll}
+    \min & \log \left(\exp \left(t_{1}\right)+\exp \left(t_{2}\right)\right)\\
+    \text { s.t. } & \log \left(\sum_{k=1}^{N} e^{a_{k}^{T} y+b_{k}}\right)+\log \left(t_{1}^{-1}\right) \leq 0 \\
+    & \log \left(\sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}}\right)+\log \left(t_{2}^{-1}\right) \leq 0
+    \end{array}
+    $$
+
+    代回原变元，可以到到最终形式
+    $$
+    \begin{array}{ll}
+    \operatorname{minimize} & \exp \left(t_{1}\right)+\exp \left(t_{2}\right) \\
+    \text {subject to } & p(x) \leq t_{1}, \quad q(x) \leq t_{2}
+    \end{array}
+    $$
+    \item 同(a)(b)过程一致，只需注意$r(x)$是单项式即可。
+    
+    可以得到使用对数函数进行转换后的几何规划为
+    $$
+    \begin{array}{ll}
+    \min & \log (t)\\
+    \text { s.t. } & \log \left(\sum_{k=1}^{N} e^{a_{k}^{T} y+b_{k}} t^{-1} /\left(e^{h^{T} y+i}-\sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}}\right)\right) \leq 0 \\
+    & \log \left(\sum_{k=1}^{M} e^{d_{k}^{T} y+e_{k}} / e^{h^{T} y+i}\right) \leq 0
+    \end{array}
+    $$
+
+    代回原变元，可以到到最终形式
+    $$
+    \begin{array}{ll}
+    \operatorname{minimize} & t \\
+    \text {subject to } & p(x) \leq t(r(x)-q(x))
+    \end{array}
+    $$
+\end{enumerate}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

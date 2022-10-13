@@ -1,0 +1,260 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{CJKfntef}
+\usepackage{setspace}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{作业题}
+\newenvironment{Solution}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{最优化方法}                         % <-- course name   
+%\newcommand\hwnumber{1}                              % <-- homework number
+\newcommand\Information{李邹/人工智能一班}          % <-- personal information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=2.5cm]{lzu-logo.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+            
+        \Huge
+        \textbf{作业9}
+            
+        \vspace{2cm}
+        \LARGE
+        李邹
+            
+        \vspace{0.1cm}
+        \Large
+        人工智能一班(2020级)                      % <-- author
+        
+            
+        \vfill
+        
+        \course \ 课程作业
+            
+        \vspace{1cm}
+            
+        \includegraphics[width=0.4\textwidth]{lzu-logo.png}
+        \\
+        
+        \Large
+        
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+    证明 $x^{\star}=(1,1 / 2,-1)$ 是优化问题
+    $$
+    \begin{array}{ll}
+    \operatorname{minimize} & (1 / 2) x^{T} P x+q^{T} x+r \\
+    \text {subject to } & -1 \leq x_{i} \leq 1, \quad i=1,2,3,
+    \end{array}
+    $$
+    的最优解，其中
+    $$
+    P=\left[\begin{array}{rrr}
+    13 & 12 & -2 \\
+    12 & 17 & 6 \\
+    -2 & 6 & 12
+    \end{array}\right], \quad q=\left[\begin{array}{r}
+    -22.0 \\
+    -14.5 \\
+    13.0
+    \end{array}\right], \quad r=1
+    $$
+\end{Problem}
+    
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+依题意有
+\[\nabla f_{0}(x)^{T}=P x+q, \quad \nabla f_{0}\left(x^{*}\right)^{T}=(-1,0,2)\]
+
+所以有
+\[\nabla f_{0}\left(x^{*}\right)^{T}\left(y-x^{*}\right)=-\left(y_{1}-1\right)+0\times \left(y_{2}-\frac{1}{2} \right)+2\times \left(y_{3}+1\right)\]
+
+又因为$-1\le y_{i} \le 1$，所以对于全体$y_{i}$
+\begin{align}
+    \nabla f_{0}\left(x^{*}\right)^{T}\left(y-x^{*}\right) & = -\left(y_{1}-1\right)+2\left(y_{3}+1\right) \notag \\
+    & = 2y_{3}-y_{1}+3 \geq 0 
+\end{align}
+
+(1)式大于等于0恒成立
+
+所以$x^{\star}=(1,1 / 2,-1)$是该优化问题的最优解。
+\hfill $\Box$
+\vspace*{3em}
+
+\begin{Problem}
+\textbf{凸-凹分式问题。}\quad 考虑具有下面形式的问题
+$$
+\begin{array}{ll}
+\operatorname{minimize} & f_{0}(x) /\left(c^{T} x+d\right) \\
+\text {subject to } & f_{i}(x) \leq 0, \quad i=1, \ldots, m \\
+& A x=b
+\end{array}
+$$
+其中$f_{0}, f_{1}, \ldots, f_{m}$为凸，而目标函数的定义域为$\left\{x \in \operatorname{dom} f_{0} \mid c^{T} x+d>0\right\}$。
+\begin{enumerate}[(a)]
+    \item 证明这是一个拟凸优化问题。
+    \item 证明这个问题等价于
+    $$
+    \begin{array}{ll}
+    \text { minimize } & g_{0}(y, t) \\
+    \text { subject to } & g_{i}(y, t) \leq 0, \quad i=1, \ldots, m \\
+    & A y=b t \\
+    & c^{T} y+d t=1
+    \end{array}
+    $$
+    其中$g_{i}$是$f_{i}$的透视。其变量是$y \in \mathbf{R}^{n}$ 和 $t \in \mathbf{R}$。说明这个问题是凸的。
+\end{enumerate}
+\end{Problem}
+
+\begin{Solution}
+\textbf{证明}
+\end{Solution}
+%Complete the assignment now
+\begin{enumerate}[(a)]
+    \item 显然，该优化问题的不等式约束是凸的，等式约束是仿射的。因此问题转换为证明其目标函数是拟凸的。
+    
+    即证明$ f_{0}(x) /\left(c^{T} x+d\right)$是拟凸函数。
+
+    该函数的下水平集为
+    \[S_{\alpha}=\left\{x_{i} \in \operatorname{dom} g \mid g(x) \leq \alpha\right\}, \alpha \in R\]
+
+    对于$\forall x, y \in\left\{x \in \operatorname{dom} f_{0} \mid c^{T} x+d>0\right\},\theta \in \left [ 0,1 \right ] $，有
+    \begin{align}
+        &c^{T}(\theta x+(1-\theta) y)+d \notag \\ 
+        = &c^{T}(\theta x+(1-\theta y))+\theta d+(1-\theta) d>0 \notag
+    \end{align}
+
+    因此目标函数的定义域是凸集。
+
+    不妨设
+    \begin{align}
+        g(x) & = f_{0}(x) /\left(c^{T} x+d\right) \leq \alpha \notag \\
+        g(y) & = f_{0}(y) /\left(c^{T} y+d\right) \leq \alpha \notag
+    \end{align}
+    那么有
+    \[g(\theta x+(1-\theta) y)=\frac{f_{0}(\theta x+(1-\theta) y)}{\left(c^{T}(\theta x+(1-\theta) y)+d\right)}\]
+
+    因为已知$f_{0}$是凸函数，所以
+    \[g(\theta x+(1-\theta) y) \leq \frac{\theta f_{0}(x)+(1-\theta) f_{0}(y)}{\left(c^{T}(\theta x+(1-\theta) y)+d\right)} \leq \alpha\]
+
+    可知$g(x)$的任意下水平集均为凸集，所以$g(x)$为拟凸函数。
+
+    \textbf{综上所述，该问题为拟凸优化问题。}
+    \item 因为$g_{i}(y, t)$是$f_{i}(i)$的透视函数，所以有
+    \[g_{i}(y, t)=t f_{i}(y / t), \quad y / t \in\left\{x \in d o m f_{0} \mid c^{T} x+d>0\right\}, t>0\]
+
+    原问题的目标函数可转换为
+    \[\frac{f_{i}(y / t)}{\left(c^{T} y / t+d\right)} \Leftrightarrow \frac{t f_{i}(y / t)}{\left(c^{T} y+t d\right)}\]
+    
+    由于存在约束$c^{T} y+d t=1$，因此两问题的目标函数等价。
+
+    而由于
+    \[g_{i}(y, t)=t f_{i}(y / t) \leq 0 \Rightarrow f_{i}(y / t) \leq 0\]
+
+    因此两问题的不等式约束等价。
+
+    又因为
+    \[A y=b t \Leftrightarrow  A \frac{y}{t}=b \]
+
+    因此等式约束亦是等价的，由等价性，结合(a)可知，该优化问题是凸的。
+
+    \textbf{综上所述，两问题等价。}
+\end{enumerate}
+\hfill $\Box$
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{CJKfntef}
+\usepackage{setspace}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{作业题}
+\newenvironment{Solution}{\textbf{证明}\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{最优化方法}                         % <-- course name   
+%\newcommand\hwnumber{1}                              % <-- homework number
+\newcommand\Information{李邹/人工智能一班}          % <-- personal information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=2.5cm]{lzu-logo.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+            
+        \Huge
+        \textbf{作业5}
+            
+        \vspace{2cm}
+        \LARGE
+        李邹
+            
+        \vspace{0.1cm}
+        \Large
+        人工智能一班(2020级)                      % <-- author
+        
+            
+        \vfill
+        
+        \course \ 课程作业
+            
+        \vspace{1cm}
+            
+        \includegraphics[width=0.4\textwidth]{lzu-logo.png}
+        \\
+        
+        \Large
+        
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+证明：反透视函数是保凸的。
+\\\\\\
+test
+\end{Problem}
+    
+\begin{Solution}
+
+\end{Solution}
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Complete the assignment now
+题目即要求证明，如果$C\subseteq \mathbb{R} ^{n} $为凸集，那么\[P^{-1} (C)=\left \{ (x,t)\in \mathbb{R}^{n+1}\mid \frac{x}{t}\in C\;,\;t>0 \right \} \]
+
+也是凸集。\\
+
+在$P^{-1} (C)$中任取两点$(x,t)$和$(y,s)$，且有$\theta \in \left [ 0,1 \right ] $，即证明：\[(\theta x+(1-\theta )y\;,\;\theta t+(1-\theta )s)\in P^{-1} (C)\]
+
+即证明：\[\frac{\theta x+(1-\theta )y}{\theta t+(1-\theta )s} \in C\]
+
+可以得到，
+\begin{equation*}
+    \begin{aligned}
+        & \frac{\theta x+(1-\theta )y}{\theta t+(1-\theta )s} \\
+        \iff & \frac{\theta t}{\theta t+(1-\theta )s}\cdot \frac{x}{t}  +\frac{(1-\theta)s}{\theta t+(1-\theta )s}\cdot \frac{y}{s}  \\
+        \iff & \mu \frac{x}{t} +(1-\mu )\frac{y}{s} \in C\ \\
+    \end{aligned}
+  \end{equation*}
+
+故原命题得证。
+
+\hfill $\Box$ 
+
+\begin{Problem}
+证明零阶条件：$x \in \mathbf{dom} \ f$，$v \in \mathbb{R}^n$，$t \in \mathbb{R}$，$x+tv \in \mathbf{dom} \ f$, 函数$f$是凸的，当且仅当对于任意$x \in \mathbf{dom} \ f$和任意向量$v$，函数$g(t)= f(x+tv)$是凸的。
+\end{Problem}
+
+\begin{Solution}
+
+\end{Solution}
+
+\textbf{先证：}$f$是凸的$\Longrightarrow$ $g$是凸的
+
+取$\forall t_{1} ,t_{2} \in \mathbf{dom}\ f$，并且$\alpha  \in \left [ 0,1 \right ]$.
+
+则有，
+\begin{equation*}
+    \begin{aligned}
+        g\left(\alpha t_{1}+(1-\alpha) t_{2}\right) &=f\left(x+\left(\alpha t_{1}+(1-\alpha) t_{2}\right) v\right) \\
+        &=f\left(\alpha x+\alpha t_{1} v+(1-\alpha) x+(1-\alpha) t_{2} v\right) \\
+        &=f\left(\alpha\left(x+t_{1} v\right)+(1-\alpha)\left(x+t_{2} v\right)\right)
+        \end{aligned}
+  \end{equation*}
+
+由于$f$是凸的，则有，
+\begin{equation*}
+    \begin{aligned}
+    g\left(\alpha t_{1}+(1-\alpha) t_{2}\right) & \leq \alpha f\left(x+t_{1} v\right)+(1-\alpha) f\left(x+t_{2} v\right) \\
+    &=\alpha g\left(t_{1}\right)+(1-\alpha) g\left(t_{2}\right)
+    \end{aligned}
+\end{equation*}
+
+因此，$g$是凸的。\\
+
+\textbf{再证：}$g$是凸的$\Longrightarrow$ $f$是凸的
+
+取$\forall x_{1} ,x_{2} \in \mathbf{dom}\ f$，并且$\alpha  \in \left [ 0,1 \right ]$.
+
+我们要证，\[f\left(\alpha x_{1}+(1-\alpha) x_{2}\right) \leq \alpha f\left(x_{1}\right)+(1-\alpha) f\left(x_{2}\right) \]
+
+令$\lambda =x_{2}-x_{1}$，考虑$g\left(t\right)=f\left(x_{1}+t\lambda \right)=f\left(x_{1}+t\left(x_{2}-x_{1}\right)\right)$.
+
+容易验证，$g\left(0\right)=f\left(x_{1}\right)$，$g\left(1\right)=f\left(x_{2}\right)$，$g\left(1-\alpha \right)=f\left(\alpha x_{1}+\left(1-\alpha \right)x_{2}\right)$.
+
+则有，
+\begin{equation*}
+\begin{aligned}
+    f(\alpha x_{1}+(1-\alpha) x_{2}) &=g(1-\alpha) \\
+    &=g(\alpha \cdot 0+(1-\alpha) \cdot 1) \\
+    & \leq \alpha g(0)+(1-\alpha) g(1) \\
+    &=\alpha f(x_{1})+(1-\alpha) f(x_{2})
+    \end{aligned}
+\end{equation*}
+
+因此，$f$是凸的。\\
+
+原命题得证。
+
+\hfill $\Box$ 
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
